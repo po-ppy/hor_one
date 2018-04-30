@@ -1,6 +1,7 @@
 #_*_ coding:utf-8 _*_
-require './Hor_one'
+require './lib/Hor_one'
 include Hor_one
+
 while true do
   sleep(2)
   get_one
@@ -21,3 +22,4 @@ end
 #execute_one
 #puts "%%%#{@last_one.body.to_s.chomp}%%%"
 #
+

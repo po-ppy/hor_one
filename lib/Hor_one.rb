@@ -1,6 +1,10 @@
 #_*_ coding:utf-8 _*_
 require 'mail'
-require './config/mail_config.rb'
+#require './sign/new_sign.rb'
+#require './config/mail_config.rb'
+require File.dirname(__FILE__)+'/sign/new_sign.rb'
+require File.dirname(__FILE__)+'/config/mail_config.rb'
+
 
 module Hor_one
   @last_one = nil  
@@ -59,19 +63,26 @@ module Hor_one
       result = do_common_job @last_one.body.to_s.chomp
     else
       #do some commmand job
+      result = do_command_job @last_one.body.to_s.chomp
     end
     feedback result
   end
 
   def do_command_job(command)
-    system command
+    begin
+      IO.popen(command) do |io|
+        io.read
+      end
+    rescue Exception => e
+      e.message
+    end
   end
   
   def do_common_job(common)
     case common
     when "sign"
       #do yiban sign
-      "应该是签到的"
+      return sign(@name_ybid)
 
     when "water"
       #do nfc copy water_card
