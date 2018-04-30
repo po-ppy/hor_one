@@ -15,3 +15,25 @@
 - 若标题为 'common',邮件正文为要执行的命令，如：'ls -al'
 - 若标题为 'command',邮件正文为 'sign' 或 'delete_all'
 - 邮件内容（正文）必须为纯文本，暂时还不支持Multipart Email！！
+## 个人修改
+可以将common方法重写，进而执行自己的常用操作
+- 示例
+```ruby
+include Hor_one
+module Hor_one
+  def do_common_job(common)
+    case common
+    when  name_you_want_1
+      #do what you want to do,but make sure return some string,it will feedback to you
+      #在这里执行你要执行的操作，但是要有字符串返回值，这将作为反馈邮件的正文发送给您
+      return "the result of 1"
+    when name_you_want_2
+      #do what you want to do
+      return "the result of 2"
+      ...
+    else
+      #return "不支持的操作"
+      return "can find your command"
+    end
+  end
+  ```
