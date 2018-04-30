@@ -1,9 +1,10 @@
 #_*_ coding:utf-8 _*_
+$LOAD_PATH.unshift __dir__
 require 'mail'
-#require './sign/new_sign.rb'
-#require './config/mail_config.rb'
-require File.dirname(__FILE__)+'/sign/new_sign.rb'
-require File.dirname(__FILE__)+'/config/mail_config.rb'
+#require File.dirname(__FILE__)+'/sign/new_sign.rb'
+#require File.dirname(__FILE__)+'/config/mail_config.rb'
+require 'sign/new_sign'
+require 'config/mail_config'
 
 
 module Hor_one
@@ -87,6 +88,9 @@ module Hor_one
     when "water"
       #do nfc copy water_card
       "充值相关"
+    when "delete_all"
+      Mail.delete_all
+      "清空邮箱"
     else
       "不支持的命令"
     end

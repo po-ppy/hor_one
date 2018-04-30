@@ -1,5 +1,6 @@
 #_*_ coding:utf-8 _*_
-require './lib/Hor_one'
+$LOAD_PATH.unshift __dir__
+require 'lib/Hor_one'
 include Hor_one
 
 while true do

@@ -2,6 +2,7 @@
 require 'mechanize'
 require 'net/http'
 require File.dirname(__FILE__)+'/name_ybid.rb'
+#require 'name_ybid.rb'
 
 #name_ybid = {'姓名' => 'ybid'}
 def sign(name_id_hash)
