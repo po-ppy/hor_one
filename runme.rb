@@ -1,6 +1,7 @@
 #_*_ coding:utf-8 _*_
 require './lib/Hor_one'
 include Hor_one
+
 runme = Thread.new do
   while true do
     sleep 1
@@ -10,4 +11,5 @@ runme = Thread.new do
     end 
   end
 end
+
 runme.join

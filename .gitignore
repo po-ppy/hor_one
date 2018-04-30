@@ -51,3 +51,5 @@ build-iPhoneSimulator/
 
 ##忽略我的配饰文件
 config/mail_config.rb
+test/*
+test.rb
