@@ -49,7 +49,7 @@ build-iPhoneSimulator/
 # unless supporting rvm < 1.11.0 or doing something fancy, ignore this:
 .rvmrc
 
-##忽略我的配饰文件
-config/mail_config.rb
+##忽略我的配置文件
+lib/config/mail_config.rb
 test/*
 test.rb
