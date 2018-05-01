@@ -85,7 +85,7 @@ module Hor_one
       #do yiban sign
       return sign(@name_ybid)
 
-    when "water"
+    when "ecard"
       #do nfc copy water_card
       "充值相关"
     when "delete_all"

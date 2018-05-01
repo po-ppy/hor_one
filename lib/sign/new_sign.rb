@@ -30,7 +30,7 @@ def sign(name_id_hash)
         params = Hash['ZoneLng'=>zoneLng, 'ZoneLat'=>zoneLat, 'ZoneRadius'=>zoneRadius,'StartTime'=>startTime,'EndTime'=>endTime ,'UserLng'=>zoneLng,'UserLat'=>zoneLat,'StudentId'=>value,'PlanId'=>planId,'SchoolCode'=>'10712']
 #
         res = Net::HTTP.post_form(uri,params)
-        return "#{key}的签到返回结果: " + res.body
+        return "#{key} -- >" + res.body
     elsif planId == ''
       return "不需要签到"
       break
