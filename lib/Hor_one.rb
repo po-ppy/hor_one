@@ -10,14 +10,19 @@ require 'config/mail_config'
 module Hor_one
   @last_one = nil  
   @pre_one = nil
+  @emails = nil
+
+  def flash_emails
+    @emails = Mail.all
+  end
 
   def get_one
-    emails = Mail.all
-    if emails.length < 0
+    #emails = Mail.all
+    if @emails.length == nil
       return 
     end
     #emails = Mail.find(what: :last, count: 15, order: :dec)
-    emails.each do |email|
+    @emails.each do |email|
       #if @last_one == email || email.subject != "command" || email.subject != "common"
       #  puts email.subject
       #  next
@@ -81,13 +86,32 @@ module Hor_one
   
   def do_common_job(common)
     case common
-    when "sign"
+    when "sign_all"
       #do yiban sign
       return sign(@name_ybid)
 
     when "ecard"
       #do nfc copy water_card
       "充值相关"
+    when  /sign_id/
+      tempArray = common.split('::')
+      if tempArray == nil || tempArray.length != 2
+        return "指令使用错误"
+      elsif !/^YB\d+/.match(tempArray[1]) 
+        return "指令错误，易班id非法"
+      else 
+        return sign_by_id(tempArray[1])
+      end
+      #"个人签到"
+    when /sign_url/
+      tempArray = common.split('::')
+      if tempArray == nil || tempArray.length != 2
+        return "指令错误！！"
+      elsif !/YB\d+/.match(tempArray[1])
+        return "指令错误，请输入正确的url地址"
+      else
+        return sign_by_id(/YB\d+/.match(tempArray[1]))
+      end
     when "delete_all"
       Mail.delete_all
       "清空邮箱"
