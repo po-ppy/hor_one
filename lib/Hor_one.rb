@@ -64,12 +64,31 @@ module Hor_one
 
   def execute_one
     @pre_one = @last_one
+    to_do_str = nil
+    result = "resut???"
+    if @last_one.multipart?
+      temp = Nokogiri::HTML(@last_one.html_part.body.match(/<div.*<\/div>/).to_s)
+      #to_do_str = temp.xpath("//span")[0].text.to_s.chomp
+      #may_be_nil = temp.xpath("//span")[0]
+      if temp.xpath("//div")[0] == nil
+        to_do_dir = nil
+      else
+        to_do_str = temp.xpath("//div")[0].text.to_s.chomp
+      end
+      if to_do_str == nil
+        feedback "邮件类型出错"
+        return
+      end
+    else
+      to_do_str = @last_one.body.to_s.chomp
+    end
+
     if @last_one.subject == 'common'
       #do some common job
-      result = do_common_job @last_one.body.to_s.chomp
+      result = do_common_job to_do_str
     else
       #do some commmand job
-      result = do_command_job @last_one.body.to_s.chomp
+      result = do_command_job to_do_str
     end
     feedback result
   end
