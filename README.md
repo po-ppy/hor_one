@@ -1,7 +1,7 @@
 # hor_one
 通过邮件，让运行该该服务程序的机器可以执行某些操作
 ## 最新说明
-项目基本是废了，不停访问邮件服务器好像会被拒绝，吃个饭回来服务就挂掉了，哈哈哈哈
+增加通过易班id和url签到,还是不支持Multipart Email，哈哈哈哈哈
 ## 使用前的配置
 - 将lib/config/mail_config_template.rb中的用户名和密码改为自己的，并将文件重命名为mail_config.rb
 ## 使用说明
@@ -14,8 +14,10 @@
 ### 使用方法
 - 邮件的标题为 'command' 或 'common'
 - 若标题为 'common',邮件正文为要执行的命令，如：'ls -al'
-- 若标题为 'command',邮件正文为 'sign' 或 'delete_all'
+- 若标题为 'command',邮件正文为 'sign_all' 或 'delete_all'
 - 邮件内容（正文）必须为纯文本，暂时还不支持Multipart Email！！
+- 通过易班id签到，标题为'common',正文为'sign_id::YB???','YB???'为自己的易班id
+- 通过易班签到url签到，标题为'common',正文为’sign_url::url?','url?'为签到页面的url，如'http://kqapp.nwsuaf.edu.cn/Index.aspx?xsid=YB6666666&sch=10712&ts=1525261092978'
 ## 个人修改
 可以将common方法重写，进而执行自己的常用操作
 - 示例
