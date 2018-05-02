@@ -3,6 +3,7 @@
 ## 最新说明
 增加通过易班id和url签到,终于支持Multipart Email了，哈哈哈哈哈
 ## 使用前的配置
+- gem依赖:nokogiri,mechanize,mail
 - 将lib/config/mail_config_template.rb中的用户名和密码改为自己的，并将文件重命名为mail_config.rb
 ## 使用说明
 - 在自己的机器上运行runme.rb,即可启动服务
